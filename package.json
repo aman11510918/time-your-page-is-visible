@@ -1,7 +1,8 @@
 {
-  "name": "pagevisibleduration",
+  "name": "time-your-page-is-visible",
   "version": "0.1.0",
   "private": true,
+  "author": "Aman",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
