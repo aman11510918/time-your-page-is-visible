@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function visibilityChange() {
   if (typeof document.hidden !== "undefined") {
+    // Opera 12.10 and Firefox 18 and later support
     return "visibilitychange";
-  } else if (typeof document.mshidden !== "undefined") {
+  } else if (typeof document.msHidden !== "undefined") {
     return "msvisibilitychange";
-  } else if (typeof document.webkitHidden !== "undefine") {
+  } else if (typeof document.webkitHidden !== "undefined") {
     return "webkitvisibilitychange";
   }
 }
@@ -13,19 +14,19 @@ export function visibilityChange() {
 export function hidden() {
   if (typeof document.hidden !== "undefined") {
     return "hidden";
-  } else if (typeof document.mshidden !== "undefined") {
+  } else if (typeof document.msHidden !== "undefined") {
     return "msHidden";
-  } else if (typeof document.webkitHidden !== "undefine") {
+  } else if (typeof document.webkitHidden !== "undefined") {
     return "webkitHidden";
   }
 }
 
 export function handleVisibilityChange() {
-  return !document[hidden];
+  return !document[hidden()];
 }
 
 export function PageVisibility() {
-  const [visible, setVisible] = useState(handleVisibilityChange());
+  const [visible, setVisible] = useState(() => handleVisibilityChange());
 
   const onVisibilityChange = () => {
     setVisible(handleVisibilityChange());

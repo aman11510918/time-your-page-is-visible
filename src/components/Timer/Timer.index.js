@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-export function currentTime(isTimerStart) {
+export function CurrentTime(isTimerStart) {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    console.log("inside current Time");
-    
+    // console.log("inside current Time");
+
     let interval;
 
     if (isTimerStart) {
@@ -24,22 +24,24 @@ export function currentTime(isTimerStart) {
   return timer;
 }
 
-export function totalTime(isTimer) {
+export function TotalTime(isTimerStart) {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    console.log("inside Total Time");
+    console.log("isTimerStart", isTimerStart);
 
-    let interval;
+    let interval = null;
     if (isTimerStart) {
-      setInterval(() => {
-        setTimer(timer + 1);
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
       }, 1000);
     }
+
     return () => {
       clearInterval(interval);
+      console.log("inside clean up");
     };
-  }, [isTimerStart, timer]);
+  }, [isTimerStart]);
 
   return timer;
 }
